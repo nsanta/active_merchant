@@ -87,7 +87,8 @@ module ActiveMerchant
         :capture => 'mark',
         :void => 'void',
         :refund => 'return',
-        :credit => 'newreturn'
+        :credit => 'newreturn',
+        :reauthorization => 'authprev'
       }
      
       SUCCESS_CODES = [ 'pending', 'success' ]
@@ -172,6 +173,13 @@ module ActiveMerchant
         add_amount(post, money, options)
         post[:orderID] = reference
         commit(:refund, post)
+      end
+      
+      def reauthorization(money, reference, options = {})
+        post = PlugnpayPostData.new
+        add_amount(post, money, options)
+        post[:prevorderid] = reference
+        commit(:reauthorization, post)
       end
       
       private                                 
