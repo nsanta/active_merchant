@@ -173,6 +173,7 @@ module ActiveMerchant
         post = PlugnpayPostData.new
         add_amount(post, money, options)
         post[:orderID] = reference
+        post[:currency] = options[:currency] || @options[:default_currency] || self.class.default_currency
         commit(:refund, post)
       end
       
@@ -180,13 +181,15 @@ module ActiveMerchant
         post = PlugnpayPostData.new
         add_amount(post, money, options)
         post[:prevorderid] = reference
+        post[:currency] = options[:currency] || @options[:default_currency] || self.class.default_currency
         commit(:reauthorization, post)
       end
       
       
-      def store(creditcard)
+      def store(creditcard , options)
         post = PlugnpayPostData.new
-        add_creditcard(post, creditcard)  
+        add_creditcard(post, creditcard) 
+        post[:currency] = options[:currency] || @options[:default_currency] || self.class.default_currency
         commit(:checkcard, post)
       end
       
