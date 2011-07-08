@@ -186,7 +186,7 @@ module ActiveMerchant
       end
       
       
-      def store(creditcard , options)
+      def store(creditcard , options = {})
         post = PlugnpayPostData.new
         add_creditcard(post, creditcard) 
         post[:currency] = options[:currency] || @options[:default_currency] || self.class.default_currency
