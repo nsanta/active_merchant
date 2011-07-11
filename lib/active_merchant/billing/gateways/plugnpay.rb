@@ -95,7 +95,7 @@ module ActiveMerchant
       SUCCESS_CODES = [ 'pending', 'success' ]
       FAILURE_CODES = [ 'badcard', 'fraud' ]
      
-      self.default_currency = 'USD'
+      self.default_currency = 'CAD'
       self.supported_countries = ['US']
       self.supported_cardtypes = [:visa, :master, :american_express, :discover]
       self.homepage_url = 'http://www.plugnpay.com/'
